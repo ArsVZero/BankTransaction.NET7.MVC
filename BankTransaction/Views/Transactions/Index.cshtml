@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BankTransaction.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="display-6 lead text-center">List of Transactions</h1>
+
+<p>
+    <a asp-action="AddOrEdit" class="btn btn-outline-secondary float-end mb-3"><i class="fa-regular fa-square-plus"></i>&nbspCreate New Transaction</a>
+</p>
+<table class="table lead text-center">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.AccountNumber)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.BeneficiaryName)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeneficiaryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+
+                <td>
+                    <form asp-action="Delete" asp-route-id="@item.TransactionId">
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-outline-success" asp-action="AddOrEdit" asp-route-id="@item.TransactionId"><i class="fa-regular fa-pen-to-square"></i></a>&nbsp;
+                            <a class="btn btn-outline-warning" asp-action="Details" asp-route-id="@item.TransactionId"><i class="fa-solid fa-circle-info"></i></a>&nbsp;
+                            <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Sure to delete this record?')"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

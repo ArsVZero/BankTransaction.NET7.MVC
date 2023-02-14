@@ -1,0 +1,67 @@
+﻿@model BankTransaction.Models.Transaction
+
+@{
+    ViewData["Title"] = "Transaction";
+}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card shadow p-3 mt-5 bg-body-tertiary rounded border border-dark-subtle border border-3">
+            <div class="card-header">
+                <h1 class="display-6 text-center lead">Transaction</h1>
+            </div>
+            <div class="card-body">
+                <form asp-action="AddOrEdit" autocomplete="off">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="TransactionId" />
+                    <input type="hidden" asp-for="Date" />
+                    <div class="form-group mb-2">
+                        <label asp-for="AccountNumber" class="control-label mb-1"></label>
+                        <input asp-for="AccountNumber" class="form-control" />
+                        <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="BeneficiaryName" class="control-label mb-1"></label>
+                        <input asp-for="BeneficiaryName" class="form-control" />
+                        <span asp-validation-for="BeneficiaryName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="BankName" class="control-label mb-1"></label>
+                        <input asp-for="BankName" class="form-control" />
+                        <span asp-validation-for="BankName" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label asp-for="SWIFTCode" class="control-label mb-1"></label>
+                                <input asp-for="SWIFTCode" class="form-control" />
+                                <span asp-validation-for="SWIFTCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label asp-for="Amount" class="control-label mb-1"></label>
+                                <input asp-for="Amount" class="form-control" />
+                                <span asp-validation-for="Amount" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-2">
+                        <input type="submit" value="Submit" class="text-uppercase btn btn-outline-primary float-start w-100" />
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="form-group">
+                    <a asp-action="Index" class="text-uppercase btn btn-outline-info float-end w-100">View All</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
